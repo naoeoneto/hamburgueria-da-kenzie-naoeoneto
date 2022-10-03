@@ -1,34 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import { Cart } from './components/Cart'
+import { Header } from './components/Header'
+import { ProductList } from './components/ProductsList'
+import { api } from './services/api'
+import { GlobalStyle } from './styles/global'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [products, setProducts] = useState([])
+  // const [filteredProducts, setFilteredProducts] = useState([]);
+  const [currentSale, setCurrentSale] = useState([])
+  const [counter, setCounter] = useState(1)
+
+  useEffect(() => {
+    api.get('/products/')
+    .then(resp => setProducts(resp.data))
+    .catch(err => console.log(err))
+  }, [])
+
+  function addNumber(){
+    setCounter(counter + 1)
+  }
+
+  function decreaseNumber(){
+    setCounter(counter - 1)
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      <GlobalStyle />
+      <Header
+      //  showProducts={showProducts}
+       />
+      <section>
+        <ProductList 
+        products={products}
+        currentSale={currentSale}
+        setCurrentSale={setCurrentSale}
+        counter={counter}
+        setCounter={setCounter}
+        />
+      </section>
+      <Cart 
+        currentSale={currentSale}
+        setCurrentSale={setCurrentSale}
+        counter={counter}
+        addNumber={addNumber}
+        decreaseNumber={decreaseNumber} 
+        />
     </div>
   )
 }
 
 export default App
+
+// - Para informar ao usuário que o item já foi adicionado ao carrinho, 
+// ao invés de utilizar um alert (uma má prática em React), 
+// pode-se utilizar um Toast de bibliotecas como React-toastify ou react-hot-toast;
