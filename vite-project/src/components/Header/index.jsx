@@ -1,11 +1,12 @@
-import { InputSearch } from "../InputSearch";
-import { Logo } from "../Logo";
+import { InputSearch } from "./InputSearch";
+import { Logo } from "./Logo";
+import { MyHeader } from "./styles";
 
 export function Header({ showProducts }){
     return (
-        <header>
+        <MyHeader>
             <Logo />
             <InputSearch showProducts={showProducts} />
-        </header>
+        </MyHeader>
     )
 }
