@@ -5,6 +5,10 @@ import { ProductList } from './components/ProductsList'
 import { api } from './services/api'
 import { GlobalStyle } from './styles/global'
 
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   const [products, setProducts] = useState([])
@@ -18,11 +22,61 @@ function App() {
     .catch(err => console.log(err))
   }, [])
 
+  function notifySuccess(){
+    toast.success('Produto adicionado ao carrinho', {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  function notifyRemove(){
+    toast.error('Produto removido do carrinho', {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  function notifyInfo(){
+    toast.info('Quantidade alterada', {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
+  function notifyWarning(){
+    toast.warn('Carrinho limpo', {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+
   function addNumber(){
+    notifyInfo()
     setCounter(counter + 1)
   }
 
   function decreaseNumber(){
+    notifyInfo()
     setCounter(counter - 1)
   }
 
@@ -39,15 +93,20 @@ function App() {
         setCurrentSale={setCurrentSale}
         counter={counter}
         setCounter={setCounter}
+        notifySuccess={notifySuccess}
+        notifyInfo={notifyInfo}
         />
       </section>
-      <Cart 
-        currentSale={currentSale}
-        setCurrentSale={setCurrentSale}
-        counter={counter}
-        addNumber={addNumber}
-        decreaseNumber={decreaseNumber} 
-        />
+        <Cart 
+          currentSale={currentSale}
+          setCurrentSale={setCurrentSale}
+          counter={counter}
+          addNumber={addNumber}
+          decreaseNumber={decreaseNumber}
+          notifyRemove={notifyRemove}
+          notifyWarning={notifyWarning} 
+          />
+        <ToastContainer />
     </div>
   )
 }

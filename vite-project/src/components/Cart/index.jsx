@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { CartProduct } from "./CartProduct"
 import { CartTotal } from "./CartTotal"
 import { CartList } from "./styles"
 
-export function Cart({ currentSale, setCurrentSale, counter, addNumber, decreaseNumber }){
+export function Cart({ currentSale, setCurrentSale, counter, addNumber, decreaseNumber, notifyRemove, notifyWarning }){
 
     return (
         <CartList>
@@ -20,12 +19,14 @@ export function Cart({ currentSale, setCurrentSale, counter, addNumber, decrease
                             counter={counter}
                             addNumber={addNumber}
                             decreaseNumber={decreaseNumber}
+                            notifyRemove={notifyRemove}
                             />)
                     ))}   
                         <CartTotal 
                         currentSale={currentSale} 
                         setCurrentSale={setCurrentSale}
                         counter={counter} 
+                        notifyWarning={notifyWarning}
                         />
                     </ul>
                 ) : (

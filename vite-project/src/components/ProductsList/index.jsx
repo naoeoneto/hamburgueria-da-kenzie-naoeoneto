@@ -1,7 +1,7 @@
 import { ProductCard } from "./ProductCard"
 import { List } from "./styles"
 
-export function ProductList({ products, currentSale, setCurrentSale, counter, setCounter }){   
+export function ProductList({ products, currentSale, setCurrentSale, counter, setCounter, notifySuccess, notifyInfo }){   
 
     // function showProducts(product){
     //     const filtered = products.filter(elem => elem.name.toLowerCase().includes(product))
@@ -15,8 +15,10 @@ export function ProductList({ products, currentSale, setCurrentSale, counter, se
     function handleClick(productId){
         const item = products.find(elem => elem.id === productId)
         if(currentSale.includes(item)){
-            return setCounter(counter + 1)
+            notifyInfo()
+            setCounter(counter + 1)
         } else {
+            notifySuccess()
             setCurrentSale([...currentSale, item])
         }
     }

@@ -1,8 +1,9 @@
 import { CartItem } from "./styles"
 
-export function CartProduct({ cartProduct, currentSale, setCurrentSale, counter, addNumber, decreaseNumber }){
+export function CartProduct({ cartProduct, currentSale, setCurrentSale, counter, addNumber, decreaseNumber, notifyRemove }){
     
     function removeProduct(id){
+        notifyRemove()
         setCurrentSale(currentSale.filter((product) => product.id !== id))
     }
 
@@ -13,7 +14,7 @@ export function CartProduct({ cartProduct, currentSale, setCurrentSale, counter,
             </figure>
             <div>
                 <h4>{cartProduct.name}</h4>
-                <p>{cartProduct.price}</p>
+                <p>{(cartProduct.price * counter).toFixed(2)}</p>
             </div>
             <div>
                 <button onClick={decreaseNumber}>-</button>
