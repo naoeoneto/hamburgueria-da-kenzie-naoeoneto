@@ -4,17 +4,17 @@ import { Header } from './components/Header'
 import { ProductList } from './components/ProductsList'
 import { api } from './services/api'
 import { GlobalStyle } from './styles/global'
-
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Container } from './styles/container'
 
 function App() {
 
   const [products, setProducts] = useState([])
-  // const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentSale, setCurrentSale] = useState([])
-  const [counter, setCounter] = useState(1)
+  const [cartTotal, setCartTotal] = useState(0)
 
   useEffect(() => {
     api.get('/products/')
@@ -70,49 +70,36 @@ function App() {
       });
   }
 
-  function addNumber(){
-    notifyInfo()
-    setCounter(counter + 1)
-  }
-
-  function decreaseNumber(){
-    notifyInfo()
-    setCounter(counter - 1)
-  }
+  
 
   return (
-    <div>
+    <Container>
       <GlobalStyle />
       <Header
       //  showProducts={showProducts}
-       />
-      <section>
+      />
+      <div className='homeSections'>
         <ProductList 
         products={products}
         currentSale={currentSale}
         setCurrentSale={setCurrentSale}
-        counter={counter}
-        setCounter={setCounter}
         notifySuccess={notifySuccess}
         notifyInfo={notifyInfo}
+        setCartTotal={setCartTotal}
         />
-      </section>
         <Cart 
           currentSale={currentSale}
           setCurrentSale={setCurrentSale}
-          counter={counter}
-          addNumber={addNumber}
-          decreaseNumber={decreaseNumber}
+          notifyInfo={notifyInfo}
           notifyRemove={notifyRemove}
-          notifyWarning={notifyWarning} 
+          notifyWarning={notifyWarning}
+          cartTotal={cartTotal}
+          setCartTotal={setCartTotal} 
           />
+        </div>
         <ToastContainer />
-    </div>
+    </Container>
   )
 }
 
 export default App
-
-// - Para informar ao usuário que o item já foi adicionado ao carrinho, 
-// ao invés de utilizar um alert (uma má prática em React), 
-// pode-se utilizar um Toast de bibliotecas como React-toastify ou react-hot-toast;
