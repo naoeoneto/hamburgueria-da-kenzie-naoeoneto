@@ -29,15 +29,17 @@ export const Form = styled.form`
         margin-left: 5px;
     }
 
-    button {
+    span {
         padding: 0.72rem 1.25rem;
         background-color: var(--color-primary);
         color: var(--white);
         font-size: var(--font-size-5);
         border: none;
+        border-radius: 8px;
+        cursor: pointer;
     }
 
-    button:hover {
+    span:hover {
         background-color: var(--color-primary-50);
         transition: 0.75s;
         border: none;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CartItem = styled.li`
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     height: 80px;
     margin-bottom: 1.25rem;
@@ -12,11 +11,9 @@ export const CartItem = styled.li`
     gap: 0.75rem;
 
     figure {
-        /* width: 70px; */
         background-color: var(--gray-20);
         border-radius: 5px;
         height: 100%;
-        /* width: 20%; */
         
         img {
             object-fit: cover;
@@ -80,9 +77,7 @@ export const CartItem = styled.li`
                 padding: 0.5rem;
             }
         }
-
     }
-
 
     button:hover {
         background-color: var(--color-primary-50);

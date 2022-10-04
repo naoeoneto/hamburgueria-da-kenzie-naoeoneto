@@ -12,9 +12,9 @@ import { Container } from './styles/container'
 function App() {
 
   const [products, setProducts] = useState([])
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentSale, setCurrentSale] = useState([])
   const [cartTotal, setCartTotal] = useState(0)
+  const [inputValue, setInputValue] = useState("")
 
   useEffect(() => {
     api.get('/products/')
@@ -69,14 +69,12 @@ function App() {
       progress: undefined,
       });
   }
-
   
-
   return (
     <Container>
       <GlobalStyle />
       <Header
-      //  showProducts={showProducts}
+      setInputValue={setInputValue}
       />
       <div className='homeSections'>
         <ProductList 
@@ -86,6 +84,7 @@ function App() {
         notifySuccess={notifySuccess}
         notifyInfo={notifyInfo}
         setCartTotal={setCartTotal}
+        inputValue={inputValue}
         />
         <Cart 
           currentSale={currentSale}

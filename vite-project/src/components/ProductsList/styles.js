@@ -20,7 +20,6 @@ export const List = styled.ul`
     }
 
     @media (min-width: 769px) {
-        /* flex-direction: column; */
         flex-wrap: wrap;
         width: 70%;
     }
