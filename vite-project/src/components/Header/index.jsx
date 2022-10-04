@@ -2,11 +2,15 @@ import { InputSearch } from "./InputSearch";
 import { Logo } from "./Logo";
 import { MyHeader } from "./styles";
 
-export function Header({ showProducts }){
+export function Header({ products, setInputValue, inputValue }){
     return (
         <MyHeader>
             <Logo />
-            <InputSearch showProducts={showProducts} />
+            <InputSearch 
+            products={products}
+            setInputValue={setInputValue}
+            inputValue={inputValue}
+            />
         </MyHeader>
     )
 }

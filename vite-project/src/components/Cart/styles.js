@@ -4,7 +4,6 @@ export const CartList = styled.section`
     height: auto;
     width: auto;
     margin-top: 1rem;
-    /* display: flex; */
 
     h2 {
         padding: 1.25rem;

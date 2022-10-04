@@ -1,17 +1,15 @@
-import { useState } from "react"
 import { Form } from "./styles"
 
-export function InputSearch({ showProducts }){
-    const [inputValue, setInputValue] = useState("")
+export function InputSearch({ setInputValue }){
     
     return (
         <Form>
             <input
-            onChange={(event) => setInputValue(event.target.value)} 
+            onChange={(event) => setInputValue(event.target.value)}
             type="text"
             placeholder="Digitar Pesquisa"
              />
-            <button onClick={() => showProducts(inputValue)}>Pesquisar</button>
+            <span>Pesquisar</span>
         </Form>
     )
 }

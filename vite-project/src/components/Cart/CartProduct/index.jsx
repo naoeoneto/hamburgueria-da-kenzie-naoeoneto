@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react"
 import { CartItem } from "./styles"
 
 export function CartProduct({ cartProduct, currentSale, setCurrentSale, notifyRemove, notifyInfo, cartTotal, setCartTotal }){

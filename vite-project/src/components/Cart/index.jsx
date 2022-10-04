@@ -1,5 +1,3 @@
-// import { useEffect, useState } from "react"
-// import { useState } from "react"
 import { CartProduct } from "./CartProduct"
 import { CartTotal } from "./CartTotal"
 import { CartList } from "./styles"
